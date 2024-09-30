@@ -1,0 +1,20 @@
+Prefix
+    @base <http://example.org/> .
+    <sherlock>
+
+To allow multiple of them
+    @prefix ex: <http://example.org/> .
+    ex:sherlock
+
+Default prefix
+    @prefix : <http://example.org/> .
+    :sherlock
+
+
+Predicate lists
+    :sherlock   :name "Sherlock" ;
+                :knows :watson .
+    
+Object lists:
+    :sherlock :friendOf :watson ,
+                        :lestrade .

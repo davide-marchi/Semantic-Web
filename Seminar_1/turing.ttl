@@ -1,0 +1,13 @@
+# English computer scientist Alan Mathison Turing: type of
+# resource, name, date of birth, date of death, the fact that he
+# formalized the Turing Machine, using only relative IRIs.
+
+@base <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<turing> rdf:type <Person> ;
+         <name> "Alan Mathison Turing" ;
+         <birthDate> "1912-06-23"^^xsd:date ;
+         <deathDate> "1954-06-07"^^xsd:date ;
+         <formailized> <turingMachine> .
