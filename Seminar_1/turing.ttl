@@ -11,3 +11,7 @@
          <birthDate> "1912-06-23"^^xsd:date ;
          <deathDate> "1954-06-07"^^xsd:date ;
          <formailized> <turingMachine> .
+
+<turingMachine> rdf:type <Machine> ;
+                <name> "Turing Machine" ;
+                <formalizationDate> "1936"^^xsd:gYear .
