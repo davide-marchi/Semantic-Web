@@ -1,0 +1,8 @@
+Always gives a type, a label and a description
+
+subClassOf, subPropertyOf, domain, range
+
+Ontologies:
+- FOAF
+- dublin core -> dcterms, dctypes, dc
+- Wikidata

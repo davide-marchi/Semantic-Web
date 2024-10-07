@@ -1,0 +1,44 @@
+
+# Sherlock Holmes is a detective (subclass of person); he has a given name, a 
+# family name, and a label. He is best friend of (subproperty of knows) Doctor 
+# Watson (a doctor, subclass of person) and is worst enemy of (subproperty of 
+# knows) Professor Moriarty (a professor, subclass of person). Doctor Watson has a 
+# given name (John), a family name, and a label. Professor Moriarty has a given 
+# name (James), a family name, and a label.
+
+@prefix : <http://example.org/> .
+@prefix wd: <http://wikidata.org/entity/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:Detective rdfs:subClassOf foaf:Person ;
+           rdfs:label "detective" .
+
+:Doctor rdfs:subClassOf foaf:Person ;
+        rdfs:label "doctor" .
+
+:Professor rdfs:subClassOf foaf:Person ;
+           rdfs:label "professor" .
+
+:bestFriendOf rdfs:subPropertyOf foaf:knows ;
+              rdfs:label "best friend of" .
+
+:worstEnemyOf rdfs:subPropertyOf foaf:knows ;
+              rdfs:label "worst enemy of" .
+
+wd:Q187349 a :Doctor ;
+           foaf:givenName "John" ;
+           foaf:familyName "Watson" ;
+           rdfs:label "Dr. John Watson" .
+
+wd:Q283111 a :Professor ;
+           foaf:givenName "James" ;
+           foaf:familyName "Moriarty" ;
+           rdfs:label "Professor Moriarty" .
+
+wd:Q4653 a :Detective ;
+         foaf:givenName "Sherlock" ;
+         foaf:familyName "Holmes" ;
+         rdfs:label "Sherlock Holmes" ;
+         :bestFriendOf wd:Q187349 ;
+         :worstEnemyOf wd:Q283111 .
