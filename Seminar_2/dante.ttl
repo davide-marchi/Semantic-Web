@@ -23,35 +23,35 @@ wd:Q652 rdfs:label "Italian language" .
 
 wd:Q397 rdfs:label "Latin language" .
 
+wd:Q1067 a :Writer, :Poet ;
+         foaf:givenName "Dante" ;
+         foaf:familyName "Alighieri" ;
+         rdfs:label "Dante Alighieri" .
+
 wd:Q40185 a dctypes:Text ;
         rdfs:label "Divina Commedia" ;
         dcterms:title "Divina Commedia" ;
+        dcterms:creator wd:Q1067 ;
         dcterms:issued "1309"^^xsd:gYear ;
         dcterms:language wd:Q652 .
 
 wd:Q666014 a dctypes:Text ;
         rdfs:label "Convivio" ;
         dcterms:title "Convivio" ;
+        dcterms:creator wd:Q1067 ;
         dcterms:issued "1304"^^xsd:gYear ;
         dcterms:language wd:Q652 .
 
 wd:Q18084 a dctypes:Text ;
         rdfs:label "Vita Nova" ;
         dcterms:title "Vita Nova" ;
+        dcterms:creator wd:Q1067 ;
         dcterms:issued "1293"^^xsd:gYear ;
         dcterms:language wd:Q652 .
 
 wd:Q134221 a dctypes:Text ;
         rdfs:label "Monarchia" ;
         dcterms:title "Monarchia" ;
+        dcterms:creator wd:Q1067 ;
         dcterms:issued "1312"^^xsd:gYear ;
         dcterms:language wd:Q397 .
-
-wd:Q1067 a :Writer, :Poet ;
-         foaf:givenName "Dante" ;
-         foaf:familyName "Alighieri" ;
-         rdfs:label "Dante Alighieri" ;
-         dcterms:creator wd:Q40185 ;
-         dcterms:creator wd:Q666014 ;
-         dcterms:creator wd:Q18084 ;
-         dcterms:creator wd:Q134221 .
