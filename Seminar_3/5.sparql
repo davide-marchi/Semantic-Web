@@ -1,0 +1,11 @@
+# Query 5: Retrieve distinct family names of all people without duplicates
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?familyName
+WHERE {
+  ?iri rdf:type foaf:Person .
+  ?iri foaf:familyName ?familyName .
+}

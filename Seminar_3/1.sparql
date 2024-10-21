@@ -1,0 +1,11 @@
+# Query 1: IRI and label of all people
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?iri ?label
+WHERE {
+  ?iri rdfs:label ?label .
+  ?iri rdf:type foaf:Person .
+}
