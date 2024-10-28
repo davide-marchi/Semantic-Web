@@ -1,4 +1,4 @@
-# Query 5: Retrieve the IRI and the price of all the print editions of the Divine Comedy, ordered by price
+# Query 7: Compute the total price of print editions written in Italian or English
 
 PREFIX : <http://example.org/>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -8,9 +8,11 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX dctypes: <http://purl.org/dc/dcmitype/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?printEdition ?price
+SELECT (SUM(?price) AS ?tot)
 WHERE {
-    wd:Q40185 :hasPrintEdition ?printEdition .
+    ?iri :hasPrintEdition ?printEdition .
     ?printEdition :price ?price .
+    {?printEdition dcterms:language wd:Q1860 . }    # English
+    UNION
+    {?printEdition dcterms:language wd:Q652 . }     # Italian
 }
-ORDER BY ?price

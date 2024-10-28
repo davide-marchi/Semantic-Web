@@ -16,8 +16,8 @@ WHERE {
     {
         ?text rdf:type dctypes:Text .
         ?text dcterms:creator ?iri .
-        {?text dcterms:language wd:Q397 . }
+        {?text dcterms:language wd:Q397 . }     # Latin
         UNION
-        {?text dcterms:language wd:Q652 . }
-     }
+        {?text dcterms:language wd:Q652 . }     # Italian
+    }
 }

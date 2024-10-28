@@ -1,4 +1,4 @@
-# Query 5: Retrieve the IRI and the price of all the print editions of the Divine Comedy, ordered by price
+# Query 6: Retrieve the IRI and the price of all the print editions that have been written in Italian, filtered by price < 50 
 
 PREFIX : <http://example.org/>
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -10,7 +10,8 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?printEdition ?price
 WHERE {
-    wd:Q40185 :hasPrintEdition ?printEdition .
+    ?iri :hasPrintEdition ?printEdition .
+    ?printEdition dcterms:language wd:Q652 .
     ?printEdition :price ?price .
+    FILTER(?price < 50)
 }
-ORDER BY ?price
