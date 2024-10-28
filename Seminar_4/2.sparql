@@ -1,0 +1,16 @@
+# Query 2: Labels of all texts created by Dante Alighieri, minus those written in Latin
+
+PREFIX : <http://example.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+
+SELECT ?label
+WHERE {
+    ?iri rdf:type dctypes:Text .
+    ?iri dcterms:creator wd:Q1067 .
+    ?iri rdfs:label ?label .
+    MINUS
+    {?iri dcterms:language wd:Q397 .}
+}
