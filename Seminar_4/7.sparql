@@ -10,7 +10,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT (SUM(?price) AS ?tot)
 WHERE {
-    ?iri :hasPrintEdition ?printEdition .
+    # ?iri :hasPrintEdition ?printEdition .
     ?printEdition :price ?price .
     {?printEdition dcterms:language wd:Q1860 . }    # English
     UNION

@@ -13,5 +13,5 @@ WHERE {
     ?iri rdf:type foaf:Person .
     ?iri rdfs:label ?label .
     FILTER NOT EXISTS
-    {?childIri :hasParent ?iri .}
+    {?childIri :hasParent ?iri .}   # {?iri :hasChild ?childIri .}
 }
