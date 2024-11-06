@@ -1,0 +1,14 @@
+# 9. Retrieve the labels of authors of works whose print editions have
+#    an average price > 60 (use GROUP BY and HAVING)
+
+PREFIX : <http://example.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?label (AVG(?price) AS ?avg)
+WHERE {
+    ?text :hasPrintEdition ?printEdition ;
+          dcterms:creator ?author .
+    ?printEdition :price ?price .
+    ?author rdfs:label ?label .
+} GROUP BY ?label HAVING (?avg > 60)

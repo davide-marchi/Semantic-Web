@@ -1,0 +1,13 @@
+# 1. The number of texts created by Dante Alighieri, grouped by
+#    language
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?language (COUNT(?language) AS ?number)
+WHERE {
+    ?iri a dctypes:Text ;
+         dcterms:creator wd:Q1067 ;
+         dcterms:language ?language .
+} GROUP BY ?language

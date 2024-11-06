@@ -1,0 +1,14 @@
+# 10. Retrieve the texts that are not print editions (alphabetically
+#     ordered), starting from the third result
+
+PREFIX : <http://example.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+
+SELECT ?label
+WHERE {
+    ?text a dctypes:Text ;
+          rdfs:label ?label .
+    MINUS
+    { ?iri :hasPrintEdition ?text . }
+} ORDER BY ?label OFFSET 2

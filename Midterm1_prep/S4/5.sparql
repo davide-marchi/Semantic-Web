@@ -1,0 +1,11 @@
+# 5. Retrieve the IRI and the price of all the print editions of the
+#    Divine Comedy, ordered by price 
+
+PREFIX : <http://example.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+SELECT ?printEdition ?price
+WHERE {
+    wd:Q40185 :hasPrintEdition ?printEdition .
+    ?printEdition :price ?price .
+} ORDER BY ?price

@@ -1,0 +1,14 @@
+# 6. Retrieve the IRI and the price of all the print editions that have
+#    been written in Italian, filtered by price < 50
+
+PREFIX : <http://example.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?printEdition ?price
+WHERE {
+    ?text :hasPrintEdition ?printEdition .
+    ?printEdition :price ?price ;
+                  dcterms:language wd:Q652 .
+    FILTER(?price < 50)
+}

@@ -1,0 +1,13 @@
+# 8. Compute the average price of print editions written after 1860
+
+PREFIX : <http://example.org/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT (AVG(?price) AS ?avg)
+WHERE {
+    ?text :hasPrintEdition ?printEdition .
+    ?printEdition :price ?price ;
+                  dcterms:issued ?date .
+    FILTER(?date > "1860"^^xsd:date)
+}

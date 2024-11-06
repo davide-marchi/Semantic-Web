@@ -1,0 +1,14 @@
+# 12. Retrieve the authors who have created more than 2 works,
+#     excluding the print editions
+
+PREFIX : <http://example.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?label (COUNT(?iri) AS ?count)
+WHERE {
+    ?iri dcterms:creator ?author .
+    ?author rdfs:label ?label .
+    MINUS
+    { ?text :hasPrintEdition ?iri . }
+} GROUP BY ?label HAVING (?count > 2)

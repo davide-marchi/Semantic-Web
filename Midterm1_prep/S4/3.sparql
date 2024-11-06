@@ -1,0 +1,13 @@
+# 3. IRIs and labels of all people who do not have children
+
+PREFIX : <http://example.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?iri ?label
+WHERE {
+    ?iri a foaf:Person ;
+         rdfs:label ?label .
+    FILTER NOT EXISTS
+    { ?iri :hasChild ?child . }
+}

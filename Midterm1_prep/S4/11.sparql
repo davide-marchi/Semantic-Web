@@ -1,0 +1,13 @@
+# 11. Compute the average price of Divine Comedy print editions if the
+#     price of each print edition is reduced by 8 (use BIND without
+#     GROUP BY)
+
+PREFIX : <http://example.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+SELECT (AVG(?newPrice) AS ?avg)
+WHERE {
+    wd:Q40185 :hasPrintEdition ?printEdition .
+    ?printEdition :price ?price .
+    BIND ((?price - 8) AS ?newPrice)
+}

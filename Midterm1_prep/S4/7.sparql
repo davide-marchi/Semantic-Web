@@ -1,0 +1,15 @@
+# 7. Compute the total price of print editions written in Italian or
+#    English
+
+PREFIX : <http://example.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT (SUM(?price) AS ?tot)
+WHERE {
+    ?text :hasPrintEdition ?printEdition .
+    ?printEdition :price ?price . 
+    { ?printEdition dcterms:language wd:Q652 . }      # Italian
+    UNION
+    { ?printEdition dcterms:language wd:Q1860 . }     # English
+}
