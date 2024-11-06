@@ -1,0 +1,31 @@
+@prefix : <http://example.org/> .
+@prefix wd: <http://wikidata.org/entity/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:Detective rdfs:subClassOf foaf:Person .
+
+:Doctor rdfs:subClassOf foaf:Person .
+
+:Professor rdfs:subClassOf foaf:Person .
+
+:bestFriendOf rdfs:subPropertyOf foaf:knows .
+
+:worstEnemyOf rdfs:subPropertyOf foaf:knows .
+
+wd:Q187349 a :Doctor ;
+           rdfs:label "Doctor Watson" ;
+           foaf:givenName "John" ;
+           foaf:familyName "Watson" .
+
+wd:Q283111 a :Professor ;
+           rdfs:label "Professor Moriarty" ;
+           foaf:givenName "James" ;
+           foaf:familyName "Moriarty" .
+
+wd:Q4653 a :Detective ;
+         rdfs:label "Sherlock Holmes" ;
+         foaf:givenName "Sherlock" ;
+         foaf:familyName "Holmes" ;
+         :bestFriendOf wd:Q187349 ;
+         :worstEnemyOf wd:Q283111 .
