@@ -1,0 +1,12 @@
+@base <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<turingMachine> rdf:type <Machine> ;
+                <name> "Turing Machine"^^xsd:string .
+
+<turing> rdf:type <Person>;
+         <name> "Alan Mathison Turing"^^xsd:string ;
+         <dateOfBirth> "1912-06-23"^^xsd:date ;
+         <dateOfDeath> "1954-06-07"^^xsd:date ;
+         <formalized> <turingMachine> .

@@ -1,0 +1,18 @@
+@prefix : <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:ronaldWayne rdf:type :Person ;
+             :name "Ronald Wayne" .
+
+:steveWozniak rdf:type :Person ;
+             :name "Steve Wozniak" .
+
+:steveJobs rdf:type :Person ;
+             :name "Steve Jobs" .
+
+:appleFoundation rdf:type :Event ;
+                 :date "1976-04-01"^^xsd:date ;
+                 :partecipatedBy :ronaldWayne ,
+                                 :steveWozniak ,
+                                 :steveJobs .
