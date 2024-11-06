@@ -1,0 +1,14 @@
+# 7. Given names of all people, and optionally the family name of their teacher
+
+PREFIX : <http://example.org/>	
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?givenName ?teacherFamilyName
+WHERE {
+    ?iri a foaf:Person ;
+         foaf:givenName ?givenName .
+    OPTIONAL {
+        ?iri :hasTeacher ?teacher .
+        ?teacher foaf:familyName ?teacherFamilyName .
+    }
+}

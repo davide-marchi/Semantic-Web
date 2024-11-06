@@ -1,0 +1,14 @@
+# 4. Label and date of the first two Dante’s texts in chronological order
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?label ?date
+WHERE {
+    ?iri a dctypes:Text ;
+         rdfs:label ?label ;
+         dcterms:issued ?date ;
+         dcterms:creator wd:Q1067 .
+} ORDER BY ?date LIMIT 2

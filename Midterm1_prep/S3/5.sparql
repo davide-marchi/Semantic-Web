@@ -1,0 +1,9 @@
+# 5. Family names of all people without duplicates
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?familyName
+WHERE {
+    ?iri a foaf:Person ;
+         foaf:familyName ?familyName .
+}

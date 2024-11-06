@@ -1,0 +1,13 @@
+# 3. IRI and label of all Dante’s texts in alphabetical order
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?iri ?label
+WHERE {
+    ?iri a dctypes:Text ;
+         rdfs:label ?label ;
+         dcterms:creator wd:Q1067 .
+} ORDER BY ?label

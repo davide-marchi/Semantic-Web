@@ -1,0 +1,18 @@
+# 9. Labels of all texts created by Dante Alighieri or Brunetto Latini with date < 1300 
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?label
+WHERE {
+    ?iri a dctypes:Text ;
+         rdfs:label ?label ;
+         dcterms:issued ?date .
+    { ?iri dcterms:creator wd:Q1067 . }     # Dante Alighieri
+    UNION
+    { ?iri dcterms:creator wd:Q366328 . }   # Brunetto Latini
+    FILTER (?date < "1300"^^xsd:date)
+}
