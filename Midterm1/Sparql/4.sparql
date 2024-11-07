@@ -1,0 +1,13 @@
+# 4. Retrieve the average price for every type of work (such as novels, movies, etc.),
+# applying a 10% discount to the original price.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?type (AVG(?newPrice) AS ?avgNewPrice)
+WHERE {
+    ?work a ?type ;
+          :price ?price .
+    BIND(?price * 0.9 AS ?newPrice)
+}
+GROUP BY ?type

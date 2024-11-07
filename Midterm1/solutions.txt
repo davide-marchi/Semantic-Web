@@ -1,0 +1,141 @@
+@prefix : <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> . 
+@prefix dctypes: <http://purl.org/dc/dcmitype/> . 
+@prefix wd: <http://wikidata.org/entity/> .
+
+:Painting rdfs:subClassOf dctypes:Image ;
+          rdfs:label "painting" .
+
+:Painter rdfs:subClassOf foaf:Person ;
+         rdfs:label "painter" .
+
+:brotherOf rdfs:subPropertyOf foaf:knows ;
+           rdfs:label "brother of" .
+
+wd:Q45585 a :Painting ;
+          rdfs:label "The Starry Night" ;
+          rdfs:comment "A famous painting" ;
+          dcterms:creator wd:Q5582 ;
+          dcterms:created "1889"^^xsd:date .
+
+wd:Q154469 a :Painting ;
+          rdfs:label "The Potato Eaters" ;
+          rdfs:comment "A famous painting" ;
+          dcterms:creator wd:Q5582 ;
+          dcterms:created "1885"^^xsd:date .
+
+wd:Q317188 a foaf:Person ;
+           rdfs:label "Theo van Gogh " ;
+           foaf:givenName "Theo" ;
+           foaf:familyName "van Gogh" ;
+           rdfs:comment "Younger brother of van Gogh" .
+
+wd:Q5582 a :Painter ;
+         rdfs:label "Vincent Willem van Gogh" ;
+         foaf:givenName "Vincent Willem" ;
+         foaf:familyName "van Gogh" ;
+         rdfs:comment "A Dutch Post-Impressionist painter" ;
+         :brotherOf wd:Q317188 .
+
+#########################################################################
+
+# 1. Retrieve the labels of authors and the labels of their novels published after the year
+# 1930.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+
+SELECT ?authorLabel ?novelLabel
+WHERE {
+    ?novel a :Novel ;
+           dcterms:creator ?author ;
+           dcterms:issued ?date ;
+           rdfs:label ?novelLabel .
+    ?author rdfs:label ?authorLabel .
+    FILTER (?date > "1930"^^xsd:date)
+}
+
+# 2. Retrieve the labels of fictional characters and the number of movies in which they are
+# the main characters.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?characterLabel (COUNT(?movie) AS ?movieCount)
+WHERE {
+    ?character rdf:type :FictionalPerson ;
+               rdfs:label ?characterLabel .
+    ?movie :hasMainCharacter ?character .
+}
+GROUP BY ?characterLabel
+
+# 3. Retrieve the sum of the prices of novels and movies for each language label.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?languageLabel (SUM(?price) AS ?totalPrice)
+WHERE {
+
+    { ?work a :Novel . }
+    UNION
+    { ?work a :Movie . }
+    
+    ?work dcterms:language ?language ;
+          :price ?price .
+    ?language rdfs:label ?languageLabel .
+}
+GROUP BY ?languageLabel
+
+# 4. Retrieve the average price for every type of work (such as novels, movies, etc.),
+# applying a 10% discount to the original price.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?type (AVG(?newPrice) AS ?avgNewPrice)
+WHERE {
+    ?work a ?type ;
+          :price ?price .
+    BIND(?price * 0.9 AS ?newPrice)
+}
+GROUP BY ?type
+
+# 5. Retrieve eight distinct, alphabetically ordered family names of people who are not
+# directors, starting from the sixteenth result.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?familyName
+WHERE {
+    ?person foaf:familyName ?familyName ;
+    FILTER NOT EXISTS
+    { ?person a :Director }
+} ORDER BY ?familyName LIMIT 8 OFFSET 15
+
+# 6. Retrieve the labels of fictional characters who are the main characters in fewer than
+# seven works (such as novels, movies, etc.).
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?label (COUNT(?work) AS ?workCount)
+WHERE {
+    ?work :hasMainCharacter ?character .
+    ?character a :FictionalPerson ;
+               rdfs:label ?label .
+} GROUP BY ?label HAVING(?workCount < 7)

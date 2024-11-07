@@ -1,0 +1,19 @@
+# 1. Retrieve the labels of authors and the labels of their novels published after the year
+# 1930.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dctypes: <http://purl.org/dc/dcmitype/>
+
+SELECT ?authorLabel ?novelLabel
+WHERE {
+    ?novel a :Novel ;
+           dcterms:creator ?author ;
+           dcterms:issued ?date ;
+           rdfs:label ?novelLabel .
+    ?author rdfs:label ?authorLabel .
+    FILTER (?date > "1930"^^xsd:date)
+}

@@ -1,0 +1,13 @@
+# 5. Retrieve eight distinct, alphabetically ordered family names of people who are not
+# directors, starting from the sixteenth result.
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?familyName
+WHERE {
+    ?person foaf:familyName ?familyName ;
+    FILTER NOT EXISTS
+    { ?person a :Director }
+} ORDER BY ?familyName LIMIT 8 OFFSET 15

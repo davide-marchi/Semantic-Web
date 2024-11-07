@@ -1,0 +1,589 @@
+@prefix : <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+
+# Some classes
+:Writer rdfs:subClassOf foaf:Person .
+:Poet rdfs:subClassOf foaf:Person .
+:Journalist rdfs:subClassOf foaf:Person .
+:FictionalPerson rdfs:subClassOf foaf:Person .
+:Actor rdfs:subClassOf foaf:Person .
+:Director rdfs:subClassOf foaf:Person .
+:Novel rdfs:subClassOf dctypes:Text .
+:ShortStory rdfs:subClassOf dctypes:Text .
+
+# Some properties
+:loves rdfs:subPropertyOf foaf:knows .
+:hasParent rdfs:subPropertyOf foaf:knows .
+:hasChild rdfs:subPropertyOf foaf:knows .
+:hasDirector rdfs:subPropertyOf dcterms:creator .
+
+# Georges Simenon (a writer and journalist)
+wd:Q128790
+	rdf:type :Writer, :Journalist ;
+	foaf:givenName "Georges" ;
+	foaf:familyName "Simenon" ;
+	rdfs:label "Georges Simenon" ;
+	:hasChild wd:Q436800 ;
+	:hasChild wd:Q21763273 .
+
+# Marc Simenon (Georges Simenon's child)
+wd:Q436800
+	rdf:type foaf:Person ;
+	foaf:givenName "Marc" ;
+	foaf:familyName "Simenon" ;
+	rdfs:label "Marc Simenon" ;
+	foaf:hasParent wd:Q128790 .
+
+# Pierre Simenon (Georges Simenon's child)
+wd:Q21763273
+	rdf:type foaf:Person ;
+	foaf:givenName "Pierre" ;
+	foaf:familyName "Simenon" ;
+	rdfs:label "Pierre Simenon" ;
+	foaf:hasParent wd:Q128790 .
+
+# Agatha Christie (a writer and poet)
+wd:Q35064
+	rdf:type :Writer, :Poet ;
+	foaf:givenName "Agatha" ;
+	foaf:familyName "Christie" ;
+	rdfs:label "Agatha Christie" ;
+	:hasChild wd:Q4351694 .
+
+# Rosalind Christie (Agatha Christie's child)
+wd:Q4351694
+	rdf:type foaf:Person ;
+	foaf:givenName "Rosalind" ;
+	foaf:familyName "Christie" ;
+	rdfs:label "Rosalind Christie" ;
+	foaf:hasParent wd:Q35064 .
+
+# Albert Préjean (actor)
+wd:Q1431969
+	rdf:type :Actor ;
+	foaf:givenName "Albert" ;
+	foaf:familyName "Préjean" ;
+	rdfs:label "Albert Préjean" .
+
+# Jean Gabin (actor)
+wd:Q23842
+	rdf:type :Actor ;
+	foaf:givenName "Jean" ;
+	foaf:familyName "Gabin" ;
+	rdfs:label "Jean Gabin" .
+
+# Gino Cervi (actor)
+wd:Q554301
+	rdf:type :Actor ;
+	foaf:givenName "Gino" ;
+	foaf:familyName "Cervi" ;
+	rdfs:label "Gino Cervi" .
+
+# Harry Baur (actor)
+wd:Q552063
+	rdf:type :Actor ;
+	foaf:givenName "Harry" ;
+	foaf:familyName "Baur" ;
+	rdfs:label "Harry Baur" .
+
+# Bruno Cremer (actor)
+wd:Q139560
+	rdf:type :Actor ;
+	foaf:givenName "Bruno" ;
+	foaf:familyName "Cremer" ;
+	rdfs:label "Bruno Cremer" .
+
+# Jean Richard (actor)
+wd:Q1360888
+	rdf:type :Actor ;
+	foaf:givenName "Jean" ;
+	foaf:familyName "Richard" ;
+	rdfs:label "Jean Richard" .
+
+# Gracie Fields (actor)
+wd:Q463275
+	rdf:type :Actor ;
+	foaf:givenName "Gracie" ;
+	foaf:familyName "Fields" ;
+	rdfs:label "Gracie Fields" .
+
+# Margaret Rutherford (actor)
+wd:Q230143
+	rdf:type :Actor ;
+	foaf:givenName "Margaret" ;
+	foaf:familyName "Rutherford" ;
+	rdfs:label "Margaret Rutherford" .
+
+# Angela Lansbury (actor)
+wd:Q206856
+	rdf:type :Actor ;
+	foaf:givenName "Angela" ;
+	foaf:familyName "Lansbury" ;
+	rdfs:label "Angela Lansbury" .
+
+# Ita Ever (actor)
+wd:Q468403
+	rdf:type :Actor ;
+	foaf:givenName "Ita" ;
+	foaf:familyName "Ever" ;
+	rdfs:label "Ita Ever" .
+
+# Helen Hayes (actor)
+wd:Q213302
+	rdf:type :Actor ;
+	foaf:givenName "Helen" ;
+	foaf:familyName "Hayes" ;
+	rdfs:label "Helen Hayes" .
+
+# Joan Hickson (actor)
+wd:Q465125
+	rdf:type :Actor ;
+	foaf:givenName "Joan" ;
+	foaf:familyName "Hickson" ;
+	rdfs:label "Joan Hickson" .
+
+# Geraldine McEwan (actor)
+wd:Q264648
+	rdf:type :Actor ;
+	foaf:givenName "Geraldine" ;
+	foaf:familyName "McEwan" ;
+	rdfs:label "Geraldine McEwan" .
+
+# Julia McKenzie (actor)
+wd:Q635154
+	rdf:type :Actor ;
+	foaf:givenName "Julia" ;
+	foaf:familyName "McKenzie" ;
+	rdfs:label "Julia McKenzie" .
+
+# David Suchet (actor)
+wd:Q211831
+	rdf:type :Actor ;
+	foaf:givenName "David" ;
+	foaf:familyName "Suchet" ;
+	rdfs:label "David Suchet" .
+
+# Horst Bollmann (actor)
+wd:Q109225
+	rdf:type :Actor ;
+	foaf:givenName "Horst" ;
+	foaf:familyName "Bollmann" ;
+	rdfs:label "Horst Bollmann" .
+
+# Ian Holm (actor)
+wd:Q223091
+	rdf:type :Actor ;
+	foaf:givenName "Ian" ;
+	foaf:familyName "Holm" ;
+	rdfs:label "Ian Holm" .
+
+# Austin Trevor (Q2872141)
+wd:Q2872141
+	rdf:type :Actor ;
+	foaf:givenName "Austin" ;
+	foaf:familyName "Trevor" ;
+	rdfs:label "Austin Trevor" .
+
+# Albert Finney (actor)
+wd:Q219546
+	rdf:type :Actor ;
+	foaf:givenName "Albert" ;
+	foaf:familyName "Finney" ;
+	rdfs:label "Albert Finney" .
+
+# Kenneth Branagh (actor)
+wd:Q55294
+	rdf:type :Actor, :Director ;
+	foaf:givenName "Kenneth" ;
+	foaf:familyName "Branagh" ;
+	rdfs:label "Kenneth Branagh" .
+
+# Peter Ustinov (actor)
+wd:Q55796
+	rdf:type :Actor ;
+	foaf:givenName "Peter" ;
+	foaf:familyName "Ustinov" ;
+	rdfs:label "Peter Ustinov" .
+
+# Jules Maigret (Georges Simenon's fictional character)
+wd:Q830561
+	rdf:type :FictionalPerson ;
+	foaf:givenName "Jules" ;
+	foaf:familyName "Maigret" ;
+	rdfs:label "Jules Maigret" ;
+    dcterms:creator wd:Q128790 ;
+    :performer wd:Q1431969 ,
+               wd:Q23842 ,
+               wd:Q554301 ,
+               wd:Q552063 ,
+               wd:Q139560 ,
+               wd:Q1360888 .
+
+# Miss Marple (Agatha Christie's fictional character)
+wd:Q193531
+	rdf:type :FictionalPerson ;
+	foaf:givenName "Jane" ;
+	foaf:familyName "Marple" ;
+	rdfs:label "Miss Marple" ;
+    dcterms:creator wd:Q35064 ;
+    :performer wd:Q463275 ,
+               wd:Q230143 ,
+               wd:Q206856 ,
+               wd:Q468403 ,
+               wd:Q213302 ,
+               wd:Q465125 ,
+               wd:Q264648 ,
+               wd:Q635154 .
+
+# Hercule Poirot (Agatha Christie's fictional character)
+wd:Q170534
+	rdf:type :FictionalPerson ;
+	foaf:givenName "Hercule" ;
+	foaf:familyName "Poirot" ;
+	rdfs:label "Hercule Poirot" ;
+    dcterms:creator wd:Q35064 ;
+    :performer wd:Q211831 ,
+               wd:Q109225 ,
+               wd:Q223091 ,
+               wd:Q219546 ,
+               wd:Q55294 ,
+               wd:Q2872141 ,
+               wd:Q55796 .
+
+# Maigret (work by Georges Simenon)
+wd:Q955443
+	rdf:type :Novel ;
+	rdfs:label "Maigret" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 13.10 ;
+	dcterms:issued "1934-01-01"^^xsd:date .
+
+# Maigret Loses His Temper (work by Georges Simenon)
+wd:Q3207611
+	rdf:type :Novel ;
+	rdfs:label "Maigret Loses His Temper" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 8.45 ;
+	dcterms:issued "1963-01-01"^^xsd:date .
+
+# Maigret and the Dosser (work by Georges Simenon)
+wd:Q1341476
+	rdf:type :Novel ;
+	rdfs:label "Maigret and the Dosser" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 9.99 ;
+	dcterms:issued "1963-01-01"^^xsd:date .
+
+# Maigret and the Apparition (work by Georges Simenon)
+wd:Q129541
+	rdf:type :Novel ;
+	rdfs:label "Maigret and the Apparition" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 7.25 ;
+	dcterms:issued "1964-01-01"^^xsd:date .
+
+# Maigret on the Defensive (work by Georges Simenon)
+wd:Q3278129
+	rdf:type :Novel ;
+	rdfs:label "Maigret on the Defensive" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 15.30 ;
+	dcterms:issued "1964-01-01"^^xsd:date .
+
+# The Patience of Maigret (work by Georges Simenon)
+wd:Q1325972
+	rdf:type :Novel ;
+	rdfs:label "The Patience of Maigret" ;
+	dcterms:language wd:Q150 ;
+	dcterms:creator wd:Q128790 ;
+    :hasMainCharacter wd:Q830561 ;
+    :price 9.25 ;
+	dcterms:issued "1965-01-01"^^xsd:date .
+
+# The Body in the Library (work by Agatha Christie)
+wd:Q741407
+	rdf:type :Novel ;
+	rdfs:label "The Body in the Library" ;
+	dcterms:language wd:Q1860 ;
+	dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q193531 ;
+    :price 12.50 ;
+	dcterms:issued "1942-01-01"^^xsd:date .
+
+# A Pocket Full of Rye (work by Agatha Christie)
+wd:Q29132
+	rdf:type :Novel ;
+	rdfs:label "A Pocket Full of Rye" ;
+	dcterms:language wd:Q1860 ;
+	dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q193531 ;
+    :price 15.20 ;
+	dcterms:issued "1953-01-01"^^xsd:date .
+
+# A Caribbean Mystery (work by Agatha Christie)
+wd:Q729812
+	rdf:type :Novel ;
+	rdfs:label "A Caribbean Mystery" ;
+	dcterms:language wd:Q1860 ;
+	dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q193531 ;
+    :price 6.99 ;
+	dcterms:issued "1964-01-01"^^xsd:date .
+
+# The Murder at the Vicarage (work by Agatha Christie)
+wd:Q693559
+	rdf:type :Novel ;
+	rdfs:label "The Murder at the Vicarage" ;
+	dcterms:language wd:Q1860 ;
+	dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q193531 ;
+    :price 8.85 ;
+	dcterms:issued "1930-01-01"^^xsd:date .
+
+# The Thirteen Problems (work by Agatha Christie)
+wd:Q934396
+	rdf:type :ShortStory ;
+	rdfs:label "The Thirteen Problems" ;
+	dcterms:language wd:Q1860 ;
+	dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q193531 ;
+    :price 10.70 ;
+	dcterms:issued "1932-01-01"^^xsd:date .
+
+# Appointment with Death (work by Agatha Christie)
+wd:Q752439
+	rdf:type :Novel ;
+	rdfs:label "Appointment with Death" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 15.30 ;
+    dcterms:issued "1938-01-01"^^xsd:date .
+
+# The Murder of Roger Ackroyd (work by Agatha Christie)
+wd:Q224078
+	rdf:type :Novel ;
+	rdfs:label "The Murder of Roger Ackroyd" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 2.50 ;
+    dcterms:issued "1926-01-01"^^xsd:date .
+
+# Murder on the Orient Express (work by Agatha Christie)
+wd:Q845889
+	rdf:type :Novel ;
+	rdfs:label "Murder on the Orient Express" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 29.35 ;
+    dcterms:issued "1934-01-01"^^xsd:date .
+
+# Poirot Investigates (work by Agatha Christie)
+wd:Q1418731
+	rdf:type :Novel ;
+	rdfs:label "Poirot Investigates" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 8.56 ;
+    dcterms:issued "1924-01-01"^^xsd:date .
+
+# Murder on the Links (work by Agatha Christie)
+wd:Q542293
+	rdf:type :Novel ;
+	rdfs:label "Murder on the Links" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 11.10 ;
+    dcterms:issued "1923-01-01"^^xsd:date .
+
+# The Mysterious Affair at Styles (work by Agatha Christie)
+wd:Q472228
+	rdf:type :Novel ;
+	rdfs:label "The Mysterious Affair at Styles" ;
+	dcterms:language wd:Q1860 ;
+    dcterms:creator wd:Q35064 ;
+    :hasMainCharacter wd:Q170534 ;
+    :price 7.80 ;
+    dcterms:issued "1920-01-01"^^xsd:date .
+
+# Movies
+
+
+# Murder on the Orient Express (Q3241699)
+# 1974 film by Sidney Lumet
+wd:Q3241699
+	rdf:type :Movie ;
+	rdfs:label "Murder on the Orient Express" ;
+	dcterms:language wd:Q1860 ;
+    :hasDirector wd:Q51559 ;
+    :hasMainCharacter wd:Q170534 ;
+    :hasActor wd:Q219546 ;
+    :price 17.80 ;
+    dcterms:issued "1974-11-21"^^xsd:date .
+
+# Murder on the Orient Express (Q27689100)
+# 2017 film directed by Kenneth Branagh
+wd:Q27689100
+	rdf:type :Movie ;
+	rdfs:label "Murder on the Orient Express" ;
+	dcterms:language wd:Q1860 ;
+    :hasDirector wd:Q55294 ;
+    :hasMainCharacter wd:Q170534 ;
+    :hasActor wd:Q55294 ;
+    :price 24.10 ;
+    dcterms:issued "2017-11-10"^^xsd:date .
+
+# Death on the Nile (Q1059914)
+# 1978 film by John Guillermin
+wd:Q1059914
+	rdf:type :Movie ;
+	rdfs:label "Death on the Nile" ;
+	dcterms:language wd:Q1860 ;
+    :hasDirector wd:Q137489 ;
+    :hasMainCharacter wd:Q170534 ;
+    :hasActor wd:Q55796 ;
+    :price 15.60 ;
+    dcterms:issued "1978-09-29"^^xsd:date .
+
+# Evil Under the Sun (Q980257)
+# 1982 film by Guy Hamilton
+wd:Q980257
+	rdf:type :Movie ;
+	rdfs:label "Evil Under the Sun" ;
+	dcterms:language wd:Q1860 ;
+    :hasDirector wd:Q363653 ;
+    :hasMainCharacter wd:Q170534 ;
+    :hasActor wd:Q55796 ;
+    :price 12.60 ;
+    dcterms:issued "1982-09-30"^^xsd:date .
+
+# Alibi (Q4273984)
+# 1931 film by Leslie S. Hiscott
+wd:Q4273984
+	rdf:type :Movie ;
+	rdfs:label "Alibi" ;
+	dcterms:language wd:Q1860 ;
+    :hasDirector wd:Q3236722 ;
+    :hasMainCharacter wd:Q170534 ;
+    :hasActor wd:Q2872141 ;
+    :price 8.60 ;
+    dcterms:issued "1931-01-01"^^xsd:date .
+
+# Picpus (Q3247546)
+# 1943 film by Richard Pottier
+wd:Q3247546
+	rdf:type :Movie ;
+	rdfs:label "Picpus" ;
+	dcterms:language wd:Q150 ;
+    :hasDirector wd:Q543968 ;
+    :hasMainCharacter wd:Q830561 ;
+    :hasActor wd:Q1431969 ;
+    :price 10.60 ;
+    dcterms:issued "1943-02-12"^^xsd:date .
+
+# Maigret Sets a Trap (Q559310)
+# 1958 film by Jean Delannoy
+wd:Q559310
+	rdf:type :Movie ;
+	rdfs:label "Maigret Sets a Trap" ;
+	dcterms:language wd:Q150 ;
+    :hasDirector wd:Q449087 ;
+    :hasMainCharacter wd:Q830561 ;
+    :hasActor wd:Q23842 ;
+    :price 11.90 ;
+    dcterms:issued "1958-01-29"^^xsd:date .
+
+# La Tête d'un homme (Q4205446)
+# 1933 French film directed by Julien Duvivier
+wd:Q4205446
+	rdf:type :Movie ;
+	rdfs:label "La Tête d'un homme" ;
+	dcterms:language wd:Q150 ;
+    :hasDirector wd:Q453683 ;
+    :hasMainCharacter wd:Q830561 ;
+    :hasActor wd:Q552063 ;
+    :price 5.90 ;
+    dcterms:issued "1933-02-18"^^xsd:date .
+
+#
+
+# Sidney Lumet (Q51559)
+wd:Q51559
+	rdf:type :Director ;
+	foaf:givenName "Sidney" ;
+	foaf:familyName "Lumet" ;
+	rdfs:label "Sidney Lumet" .
+
+# John Guillermin (Q137489)
+wd:Q137489
+	rdf:type :Director ;
+	foaf:givenName "John" ;
+	foaf:familyName "Guillermin" ;
+	rdfs:label "John Guillermin" .
+
+# Guy Hamilton (Q363653)
+wd:Q363653
+	rdf:type :Director ;
+	foaf:givenName "Guy" ;
+	foaf:familyName "Hamilton" ;
+	rdfs:label "Guy Hamilton" .
+
+# Richard Pottier (Q543968)
+wd:Q543968
+	rdf:type :Director ;
+	foaf:givenName "Richard" ;
+	foaf:familyName "Pottier" ;
+	rdfs:label "Richard Pottier" .
+
+# Jean Delannoy (Q449087)
+wd:Q449087
+	rdf:type :Director ;
+	foaf:givenName "Jean" ;
+	foaf:familyName "Delannoy" ;
+	rdfs:label "Jean Delannoy" .
+
+# Julien Duvivier (Q453683)
+wd:Q453683
+	rdf:type :Director ;
+	foaf:givenName "Julien" ;
+	foaf:familyName "Duvivier" ;
+	rdfs:label "Julien Duvivier" .
+
+# Leslie S. Hiscott (Q3236722)
+wd:Q3236722
+	rdf:type :Director ;
+	foaf:givenName "Leslie S." ;
+	foaf:familyName "Hiscott" ;
+	rdfs:label "Leslie S. Hiscott" .
+
+
+# Languages
+
+# Italian language
+wd:Q652 rdfs:label "Italian" .
+
+# French language
+wd:Q150 rdfs:label "French" .
+
+# English language
+wd:Q1860 rdfs:label "English" .

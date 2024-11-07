@@ -1,0 +1,13 @@
+# 6. Retrieve the labels of fictional characters who are the main characters in fewer than
+# seven works (such as novels, movies, etc.).
+
+PREFIX : <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?label (COUNT(?work) AS ?workCount)
+WHERE {
+    ?work :hasMainCharacter ?character .
+    ?character a :FictionalPerson ;
+               rdfs:label ?label .
+} GROUP BY ?label HAVING(?workCount < 7)
