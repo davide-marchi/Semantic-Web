@@ -41,10 +41,6 @@ wd:Q5582 a :Painter ;
          rdfs:comment "A Dutch Post-Impressionist painter" ;
          :brotherOf wd:Q317188 .
 
-# L'esercizio non chiedeva di mettere le label alla definizione delle sottoclassi e sottoproprietà. Non è sbagliato farlo, però i nomi devono essere coerenti con il nome della classe e quindi "painting" e "painter" vanno scritti maiuscoli.
-
-
-
 #########################################################################
 
 # 1. Retrieve the labels of authors and the labels of their novels published after the year
@@ -81,8 +77,6 @@ WHERE {
     ?movie :hasMainCharacter ?character .
 }
 GROUP BY ?characterLabel
-
-# La query è giusta nell'impostazione, ma manca un pezzo. Così conti tutti i protagonisti di tutte le opere, mentre erano richiesti solo i protagonisti dei film. Dovevi mettere una tripla che definiva il tipo della variabile ?movie (?movie a :Movie) (-1)
 
 # 3. Retrieve the sum of the prices of novels and movies for each language label.
 
