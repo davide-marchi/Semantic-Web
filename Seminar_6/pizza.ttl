@@ -44,7 +44,6 @@
 :hasIngredient rdf:type owl:ObjectProperty ;
                owl:inverseOf :isIngredientOf ;
                rdf:type owl:AsymmetricProperty ,
-                        owl:TransitiveProperty ,
                         owl:IrreflexiveProperty ;
                rdfs:domain :Food ;
                rdfs:range :Food .
@@ -78,7 +77,6 @@
 ###  http://www.semanticweb.org/david/ontologies/2024/10/untitled-ontology-2/isIngredientOf
 :isIngredientOf rdf:type owl:ObjectProperty ,
                          owl:AsymmetricProperty ,
-                         owl:TransitiveProperty ,
                          owl:IrreflexiveProperty .
 
 
@@ -98,6 +96,7 @@
 
 ###  http://www.semanticweb.org/david/ontologies/2024/10/untitled-ontology-2/wasBoughtBy
 :wasBoughtBy rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ,
                       owl:AsymmetricProperty ,
                       owl:IrreflexiveProperty ;
              rdfs:domain :Pizza ;
