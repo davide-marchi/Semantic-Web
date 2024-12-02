@@ -1,0 +1,314 @@
+@prefix : <http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/> .
+
+<http://semanticwebcourse.org/marchi/midterm2facsimile> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#collectedIn
+:collectedIn rdf:type owl:ObjectProperty ;
+             owl:inverseOf :collects ;
+             rdfs:domain :Article ;
+             rdfs:range :Repository ;
+             owl:propertyChainAxiom ( :containedIn
+                                      :issuedBy
+                                      :publishedBy
+                                      :uses
+                                    ) .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#collects
+:collects rdf:type owl:ObjectProperty ;
+          rdfs:domain :Repository ;
+          rdfs:range :Article .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasAbstract
+:hasAbstract rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isAbstractOf ;
+             rdf:type owl:FunctionalProperty ,
+                      owl:InverseFunctionalProperty ;
+             rdfs:domain :Article ;
+             rdfs:range :Abstract .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasExtendedVersion
+:hasExtendedVersion rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isExtendedVersionOf ;
+                    rdf:type owl:FunctionalProperty ,
+                             owl:InverseFunctionalProperty ;
+                    rdfs:domain :ConferenceArticle ;
+                    rdfs:range :JournalArticle .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasSection
+:hasSection rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isSectionOf ;
+            rdf:type owl:InverseFunctionalProperty ;
+            rdfs:domain :Article ;
+            rdfs:range :Section .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#isAbstractOf
+:isAbstractOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain :Abstract ;
+              rdfs:range :Article .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#isExtendedVersionOf
+:isExtendedVersionOf rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ,
+                              owl:InverseFunctionalProperty ;
+                     rdfs:domain :JournalArticle ;
+                     rdfs:range :ConferenceArticle .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#isSectionOf
+:isSectionOf rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Section ;
+             rdfs:range :Article .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#referredBy
+:referredBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :refersTo ;
+            rdfs:domain :Article ;
+            rdfs:range :References .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#refersTo
+:refersTo rdf:type owl:ObjectProperty ;
+          rdfs:domain :References ;
+          rdfs:range :Article .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/containedIn
+:containedIn rdf:type owl:ObjectProperty ;
+             owl:inverseOf :contains ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :JournalArticle ;
+             rdfs:range :JournalVolume .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/contains
+:contains rdf:type owl:ObjectProperty ,
+                   owl:InverseFunctionalProperty ;
+          rdfs:domain :JournalVolume ;
+          rdfs:range :JournalArticle .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/issued
+:issued rdf:type owl:ObjectProperty ;
+        owl:inverseOf :issuedBy ;
+        rdf:type owl:InverseFunctionalProperty ;
+        rdfs:domain :Journal ;
+        rdfs:range :JournalVolume .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/issuedBy
+:issuedBy rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :JournalVolume ;
+          rdfs:range :Journal .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/published
+:published rdf:type owl:ObjectProperty ;
+           owl:inverseOf :publishedBy ;
+           rdf:type owl:InverseFunctionalProperty ;
+           rdfs:domain :Publisher ;
+           rdfs:range :Journal .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/publishedBy
+:publishedBy rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Journal ;
+             rdfs:range :Publisher .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/usedBy
+:usedBy rdf:type owl:ObjectProperty ;
+        owl:inverseOf :uses ;
+        rdf:type owl:InverseFunctionalProperty ;
+        rdfs:domain :Repository ;
+        rdfs:range :Publisher .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/uses
+:uses rdf:type owl:ObjectProperty ,
+               owl:FunctionalProperty ;
+      rdfs:domain :Publisher ;
+      rdfs:range :Repository .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasDate
+:hasDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain :JournalVolume ;
+         rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasNumber
+:hasNumber rdf:type owl:DatatypeProperty ;
+           rdfs:domain :JournalVolume ;
+           rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Abstract
+:Abstract rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Article
+:Article rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasAbstract ;
+                           owl:allValuesFrom :Abstract
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:allValuesFrom :Section
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:minQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Section
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasAbstract ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Abstract
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Conclusions
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Introduction
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :References
+                         ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Conclusions
+:Conclusions rdf:type owl:Class ;
+             rdfs:subClassOf :Section .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/ConferenceArticle
+:ConferenceArticle rdf:type owl:Class ;
+                   rdfs:subClassOf :Article .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Introduction
+:Introduction rdf:type owl:Class ;
+              rdfs:subClassOf :Section .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Journal
+:Journal rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :publishedBy ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Publisher
+                         ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/JournalArticle
+:JournalArticle rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Article
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :containedIn ;
+                                                             owl:someValuesFrom :JournalVolume
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Article .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/JournalVolume
+:JournalVolume rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :contains ;
+                                 owl:allValuesFrom :JournalArticle
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :contains ;
+                                 owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :JournalArticle
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasDate ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTime
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasNumber ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:int
+                               ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Publisher
+:Publisher rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/References
+:References rdf:type owl:Class ;
+            rdfs:subClassOf :Section ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :refersTo ;
+                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Article
+                            ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Repository
+:Repository rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Section
+:Section rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Abstract
+                :Article
+                :Journal
+                :JournalVolume
+                :Publisher
+                :Repository
+                :Section
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
