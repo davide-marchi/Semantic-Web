@@ -12,7 +12,7 @@
 #    Object Properties
 #################################################################
 
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#collectedIn
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/collectedIn
 :collectedIn rdf:type owl:ObjectProperty ;
              owl:inverseOf :collects ;
              rdfs:domain :Article ;
@@ -24,71 +24,9 @@
                                     ) .
 
 
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#collects
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/collects
 :collects rdf:type owl:ObjectProperty ;
           rdfs:domain :Repository ;
-          rdfs:range :Article .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasAbstract
-:hasAbstract rdf:type owl:ObjectProperty ;
-             owl:inverseOf :isAbstractOf ;
-             rdf:type owl:FunctionalProperty ,
-                      owl:InverseFunctionalProperty ;
-             rdfs:domain :Article ;
-             rdfs:range :Abstract .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasExtendedVersion
-:hasExtendedVersion rdf:type owl:ObjectProperty ;
-                    owl:inverseOf :isExtendedVersionOf ;
-                    rdf:type owl:FunctionalProperty ,
-                             owl:InverseFunctionalProperty ;
-                    rdfs:domain :ConferenceArticle ;
-                    rdfs:range :JournalArticle .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#hasSection
-:hasSection rdf:type owl:ObjectProperty ;
-            owl:inverseOf :isSectionOf ;
-            rdf:type owl:InverseFunctionalProperty ;
-            rdfs:domain :Article ;
-            rdfs:range :Section .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#isAbstractOf
-:isAbstractOf rdf:type owl:ObjectProperty ,
-                       owl:FunctionalProperty ,
-                       owl:InverseFunctionalProperty ;
-              rdfs:domain :Abstract ;
-              rdfs:range :Article .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#isExtendedVersionOf
-:isExtendedVersionOf rdf:type owl:ObjectProperty ,
-                              owl:FunctionalProperty ,
-                              owl:InverseFunctionalProperty ;
-                     rdfs:domain :JournalArticle ;
-                     rdfs:range :ConferenceArticle .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#isSectionOf
-:isSectionOf rdf:type owl:ObjectProperty ,
-                      owl:FunctionalProperty ;
-             rdfs:domain :Section ;
-             rdfs:range :Article .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#referredBy
-:referredBy rdf:type owl:ObjectProperty ;
-            owl:inverseOf :refersTo ;
-            rdfs:domain :Article ;
-            rdfs:range :References .
-
-
-###  http://semanticwebcourse.org/marchi/midterm2facsimile#refersTo
-:refersTo rdf:type owl:ObjectProperty ;
-          rdfs:domain :References ;
           rdfs:range :Article .
 
 
@@ -105,6 +43,55 @@
                    owl:InverseFunctionalProperty ;
           rdfs:domain :JournalVolume ;
           rdfs:range :JournalArticle .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasAbstract
+:hasAbstract rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isAbstractOf ;
+             rdf:type owl:FunctionalProperty ,
+                      owl:InverseFunctionalProperty ;
+             rdfs:domain :Article ;
+             rdfs:range :Abstract .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasExtendedVersion
+:hasExtendedVersion rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isExtendedVersionOf ;
+                    rdf:type owl:FunctionalProperty ,
+                             owl:InverseFunctionalProperty ;
+                    rdfs:domain :ConferenceArticle ;
+                    rdfs:range :JournalArticle .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasSection
+:hasSection rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isSectionOf ;
+            rdf:type owl:InverseFunctionalProperty ;
+            rdfs:domain :Article ;
+            rdfs:range :Section .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/isAbstractOf
+:isAbstractOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain :Abstract ;
+              rdfs:range :Article .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/isExtendedVersionOf
+:isExtendedVersionOf rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ,
+                              owl:InverseFunctionalProperty ;
+                     rdfs:domain :JournalArticle ;
+                     rdfs:range :ConferenceArticle .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/isSectionOf
+:isSectionOf rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Section ;
+             rdfs:range :Article .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/issued
@@ -135,6 +122,19 @@
                       owl:FunctionalProperty ;
              rdfs:domain :Journal ;
              rdfs:range :Publisher .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/referredBy
+:referredBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :refersTo ;
+            rdfs:domain :Article ;
+            rdfs:range :References .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/refersTo
+:refersTo rdf:type owl:ObjectProperty ;
+          rdfs:domain :References ;
+          rdfs:range :Article .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/usedBy
@@ -293,6 +293,77 @@
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Section
 :Section rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#abstract1
+:abstract1 rdf:type owl:NamedIndividual ,
+                    :Abstract .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#conclusions1
+:conclusions1 rdf:type owl:NamedIndividual ,
+                       :Conclusions .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#conferenceArticle1
+:conferenceArticle1 rdf:type owl:NamedIndividual ,
+                             :ConferenceArticle .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#introduction1
+:introduction1 rdf:type owl:NamedIndividual ,
+                        :Introduction .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#journal1
+:journal1 rdf:type owl:NamedIndividual ,
+                   :Journal ;
+          :issued :journalVolume1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#journalArticle1
+:journalArticle1 rdf:type owl:NamedIndividual ,
+                          :JournalArticle ;
+                 :containedIn :journalVolume1 ;
+                 :hasAbstract :abstract1 ;
+                 :hasSection :conclusions1 ,
+                             :introduction1 ,
+                             :references1 ;
+                 :isExtendedVersionOf :conferenceArticle1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#journalArticle2
+:journalArticle2 rdf:type owl:NamedIndividual ,
+                          :JournalArticle .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#journalVolume1
+:journalVolume1 rdf:type owl:NamedIndividual ,
+                         :JournalVolume ;
+                :hasDate "2004-04-12T13:20:00"^^xsd:dateTime ;
+                :hasNumber "5"^^xsd:int .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#publisher1
+:publisher1 rdf:type owl:NamedIndividual ,
+                     :Publisher ;
+            :published :journal1 ;
+            :uses :repository1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#references1
+:references1 rdf:type owl:NamedIndividual ,
+                      :References ;
+             :refersTo :journalArticle2 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#repository1
+:repository1 rdf:type owl:NamedIndividual ,
+                      :Repository .
 
 
 #################################################################
