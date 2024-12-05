@@ -165,7 +165,7 @@
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/hasNumber
 :hasNumber rdf:type owl:DatatypeProperty ;
            rdfs:domain :JournalVolume ;
-           rdfs:range xsd:int .
+           rdfs:range xsd:nonNegativeInteger .
 
 
 #################################################################
@@ -173,7 +173,8 @@
 #################################################################
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Abstract
-:Abstract rdf:type owl:Class .
+:Abstract rdf:type owl:Class ;
+          rdfs:comment "Abstract of an article" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Article
@@ -210,22 +211,26 @@
                            owl:onProperty :hasSection ;
                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                            owl:onClass :References
-                         ] .
+                         ] ;
+         rdfs:comment "A published article" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Conclusions
 :Conclusions rdf:type owl:Class ;
-             rdfs:subClassOf :Section .
+             rdfs:subClassOf :Section ;
+             rdfs:comment "Conclusions of and article. where whole contents is wrapped up" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/ConferenceArticle
 :ConferenceArticle rdf:type owl:Class ;
-                   rdfs:subClassOf :Article .
+                   rdfs:subClassOf :Article ;
+                   rdfs:comment "An article written for a conference presentation" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Introduction
 :Introduction rdf:type owl:Class ;
-              rdfs:subClassOf :Section .
+              rdfs:subClassOf :Section ;
+              rdfs:comment "Introduction to the content of an article" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Journal
@@ -234,7 +239,8 @@
                            owl:onProperty :publishedBy ;
                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                            owl:onClass :Publisher
-                         ] .
+                         ] ;
+         rdfs:comment "A journal where you can find articles" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/JournalArticle
@@ -247,7 +253,8 @@
                                                          ) ;
                                       rdf:type owl:Class
                                     ] ;
-                rdfs:subClassOf :Article .
+                rdfs:subClassOf :Article ;
+                rdfs:comment "An article written to be published on a journal" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/JournalVolume
@@ -262,6 +269,11 @@
                                  owl:onClass :JournalArticle
                                ] ,
                                [ rdf:type owl:Restriction ;
+                                 owl:onProperty :issuedBy ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Journal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasDate ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onDataRange xsd:dateTime
@@ -269,8 +281,9 @@
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasNumber ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:int
-                               ] .
+                                 owl:onDataRange xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "A group of articles" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Publisher
@@ -284,7 +297,8 @@
                               owl:onProperty :refersTo ;
                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onClass :Article
-                            ] .
+                            ] ;
+            rdfs:comment "References at the end of an article that refers to other articles" .
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Repository
@@ -292,7 +306,8 @@
 
 
 ###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-12/Section
-:Section rdf:type owl:Class .
+:Section rdf:type owl:Class ;
+         rdfs:comment "A section of an article" .
 
 
 #################################################################
@@ -302,6 +317,13 @@
 ###  http://semanticwebcourse.org/marchi/midterm2facsimile#abstract1
 :abstract1 rdf:type owl:NamedIndividual ,
                     :Abstract .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#article1
+:article1 rdf:type owl:NamedIndividual ;
+          :hasSection :introduction2 ,
+                      :introduction3 ,
+                      :references2 .
 
 
 ###  http://semanticwebcourse.org/marchi/midterm2facsimile#conclusions1
@@ -319,6 +341,16 @@
                         :Introduction .
 
 
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#introduction2
+:introduction2 rdf:type owl:NamedIndividual ,
+                        :Introduction .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#introduction3
+:introduction3 rdf:type owl:NamedIndividual ,
+                        :Introduction .
+
+
 ###  http://semanticwebcourse.org/marchi/midterm2facsimile#journal1
 :journal1 rdf:type owl:NamedIndividual ,
                    :Journal ;
@@ -332,7 +364,8 @@
                  :hasAbstract :abstract1 ;
                  :hasSection :conclusions1 ,
                              :introduction1 ,
-                             :references1 ;
+                             :references1 ,
+                             :section1 ;
                  :isExtendedVersionOf :conferenceArticle1 .
 
 
@@ -345,7 +378,7 @@
 :journalVolume1 rdf:type owl:NamedIndividual ,
                          :JournalVolume ;
                 :hasDate "2004-04-12T13:20:00"^^xsd:dateTime ;
-                :hasNumber "5"^^xsd:int .
+                :hasNumber "5"^^xsd:nonNegativeInteger .
 
 
 ###  http://semanticwebcourse.org/marchi/midterm2facsimile#publisher1
@@ -361,9 +394,19 @@
              :refersTo :journalArticle2 .
 
 
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#references2
+:references2 rdf:type owl:NamedIndividual ,
+                      :References .
+
+
 ###  http://semanticwebcourse.org/marchi/midterm2facsimile#repository1
 :repository1 rdf:type owl:NamedIndividual ,
                       :Repository .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2facsimile#section1
+:section1 rdf:type owl:NamedIndividual ,
+                   :Section .
 
 
 #################################################################
