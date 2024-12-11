@@ -1,0 +1,11 @@
+The created ontology satisfy the 5 global restrictions:
+
+1. owl:TopDataProperty: All the data properties introduced has been defined as subproperties of TopDataProperty, and not a single superproperty of TopDataProperty as been defined
+
+2. Datatypes: All the datatypers used are from OWL 2 datatype map, and no ranges have been defined
+
+3. Simple roles: All the object propertites using min, max, functional... are simple object properties. The complex object property uses none of them
+
+4. Property Hierarchy: No cycles have been introduces in the hieriarchies, not even by the property chain
+
+5. Anonymous indivisals: There are no anonymous individuals in the ontology

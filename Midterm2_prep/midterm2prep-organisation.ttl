@@ -1,0 +1,335 @@
+@prefix : <http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/> .
+
+<http://semanticwebcourse.org/marchi/midterm2prep> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/contains
+:contains rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isContainedIn ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :Building ;
+          rdfs:range :Office .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/givesContractTo
+:givesContractTo rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :hasContractWith ;
+                 rdfs:domain :ResearchOrganisation ;
+                 rdfs:range :Eployee .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasBuilding
+:hasBuilding rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isBuildingOf ;
+             rdf:type owl:InverseFunctionalProperty ;
+             rdfs:domain :Institute ;
+             rdfs:range :Building .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasContractWith
+:hasContractWith rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Eployee ;
+                 rdfs:range :ResearchOrganisation ;
+                 owl:propertyChainAxiom ( :hasOffice
+                                          :isContainedIn
+                                          :isBuildingOf
+                                          :isInstituteOf
+                                        ) .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasInstitute
+:hasInstitute rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasSubpart ;
+              owl:inverseOf :isInstituteOf ;
+              rdf:type owl:InverseFunctionalProperty ;
+              rdfs:domain :ResearchOrganisation ;
+              rdfs:range :Institute .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasLaboratory
+:hasLaboratory rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasSubpart ;
+               owl:inverseOf :isLaboratoryOf ;
+               rdfs:domain :ResearchOrganisation ;
+               rdfs:range :Laboratory .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasLocation
+:hasLocation rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isLocationOf ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Building ;
+             rdfs:range :Location .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasOffice
+:hasOffice rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :isOfficeOf ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Eployee ;
+           rdfs:range :Office .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasSubpart
+:hasSubpart rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isSubpartOf ;
+            rdfs:domain :ResearchOrganisation ;
+            rdfs:range :Subpart .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isBuildingOf
+:isBuildingOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Building ;
+              rdfs:range :Institute .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isContainedIn
+:isContainedIn rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Office ;
+               rdfs:range :Building .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isInstituteOf
+:isInstituteOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isSubpartOf ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Institute ;
+               rdfs:range :ResearchOrganisation .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isLaboratoryOf
+:isLaboratoryOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :isSubpartOf ;
+                rdfs:domain :Laboratory ;
+                rdfs:range :ResearchOrganisation .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isLocationOf
+:isLocationOf rdf:type owl:ObjectProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain :Location ;
+              rdfs:range :Building .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isOfficeOf
+:isOfficeOf rdf:type owl:ObjectProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain :Office ;
+            rdfs:range :Eployee .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/isSubpartOf
+:isSubpartOf rdf:type owl:ObjectProperty ;
+             rdfs:domain :Subpart ;
+             rdfs:range :ResearchOrganisation .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/hasID
+:hasID rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :Eployee ;
+       rdfs:range xsd:positiveInteger .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Building
+:Building rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :contains ;
+                            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Office
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasLocation ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Location
+                          ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Eployee
+:Eployee rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( <http://xmlns.com/foaf/0.1/Person>
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :hasContractWith ;
+                                                      owl:someValuesFrom :ResearchOrganisation
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasContractWith ;
+                           owl:someValuesFrom :ResearchOrganisation
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasOffice ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Office
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasID ;
+                           owl:someValuesFrom xsd:positiveInteger
+                         ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Institute
+:Institute rdf:type owl:Class ;
+           rdfs:subClassOf :Subpart ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasBuilding ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Building
+                           ] .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Laboratory
+:Laboratory rdf:type owl:Class ;
+            rdfs:subClassOf :Subpart .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Location
+:Location rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Office
+:Office rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/ResearchOrganisation
+:ResearchOrganisation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Researcher
+:Researcher rdf:type owl:Class ;
+            rdfs:subClassOf :Eployee .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Subpart
+:Subpart rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/Technologist
+:Technologist rdf:type owl:Class ;
+              rdfs:subClassOf :Eployee .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2prep#researchOrganisation2
+:researchOrganisation2 rdf:type owl:NamedIndividual ,
+                                :ResearchOrganisation .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/building1
+:building1 rdf:type owl:NamedIndividual ,
+                    :Building ;
+           :contains :office1 ,
+                     :office2 ;
+           :hasLocation :location1 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/employee1
+:employee1 rdf:type owl:NamedIndividual ,
+                    :Eployee ;
+           :hasContractWith :researchOrganisation2 ;
+           :hasOffice :office2 ;
+           :hasID "5"^^xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/institute1
+:institute1 rdf:type owl:NamedIndividual ,
+                     :Institute ;
+            :hasBuilding :building1 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/laboratory1
+:laboratory1 rdf:type owl:NamedIndividual ,
+                      :Laboratory .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/location1
+:location1 rdf:type owl:NamedIndividual ,
+                    :Location .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/office1
+:office1 rdf:type owl:NamedIndividual ,
+                  :Office .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/office2
+:office2 rdf:type owl:NamedIndividual ,
+                  :Office .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/person1
+:person1 rdf:type owl:NamedIndividual ,
+                  <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/researchOrganisation1
+:researchOrganisation1 rdf:type owl:NamedIndividual ,
+                                :ResearchOrganisation ;
+                       :hasInstitute :institute1 ;
+                       :hasLaboratory :laboratory1 ;
+                       :hasSubpart :subpart1 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/researcher1
+:researcher1 rdf:type owl:NamedIndividual ,
+                      :Researcher ;
+             :hasOffice :office1 .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/subpart1
+:subpart1 rdf:type owl:NamedIndividual ,
+                   :Subpart .
+
+
+###  http://www.semanticweb.org/david/ontologies/2024/11/untitled-ontology-16/technologist1
+:technologist1 rdf:type owl:NamedIndividual ,
+                        :Technologist .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Building
+                :Eployee
+                :Institute
+                :Laboratory
+                :Location
+                :Office
+                :ResearchOrganisation
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

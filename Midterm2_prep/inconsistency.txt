@@ -1,0 +1,7 @@
+Writing that:
+
+researcher1 hasOffice office1
+researcher1 hasOffice office2
+office1 is a different individual than office2
+
+creates an inconsistency, because an emplyee only has 1 office
