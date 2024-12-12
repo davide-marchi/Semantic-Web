@@ -45,12 +45,14 @@
 ###  http://semanticwebcourse.org/marchi/midterm2#host
 :host rdf:type owl:ObjectProperty ;
       owl:inverseOf :hostedBy ;
+      rdf:type owl:InverseFunctionalProperty ;
       rdfs:domain :Museum ;
       rdfs:range :Exhibition .
 
 
 ###  http://semanticwebcourse.org/marchi/midterm2#hostedBy
-:hostedBy rdf:type owl:ObjectProperty ;
+:hostedBy rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
           rdfs:domain :Exhibition ;
           rdfs:range :Museum .
 
