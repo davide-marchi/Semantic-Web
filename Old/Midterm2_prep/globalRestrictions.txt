@@ -9,3 +9,22 @@ The created ontology satisfy the 5 global restrictions:
 4. Property Hierarchy: No cycles have been introduces in the hieriarchies, not even by the property chain
 
 5. Anonymous indivisals: There are no anonymous individuals in the ontology
+
+-------------------
+
+1. Restriction on owl:topDataProperty -> This is satisfied because the ontology does not 
+include any axiom on owl:topDataPropertyand any superpropertyof topDataProperty
+was defined
+
+2. Restrictions on Datatypes -> This is satisfied because the ontology:
+• only uses datatypes from the OWL 2 datatype map 
+• does not define any data range
+
+3. Restriction on Simple Roles -> This is satisfied because no composite object property is 
+used in an axiom of the forbidden types
+
+4. Restriction on the Property Hierarchy -> This is satisfied because there is only one 
+property chain in the ontologyand it does not introduce cycles
+
+5. Restrictions on Anonymous Individuals -> This is satisfied because there are no 
+anonymous individuals in our ontology
