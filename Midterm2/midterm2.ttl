@@ -314,6 +314,11 @@
            :managedBy :museum1 .
 
 
+###  http://semanticwebcourse.org/marchi/midterm2#building2
+:building2 rdf:type owl:NamedIndividual ,
+                    :Building .
+
+
 ###  http://semanticwebcourse.org/marchi/midterm2#collection1
 :collection1 rdf:type owl:NamedIndividual ,
                       :Collection .
@@ -370,7 +375,8 @@
 ###  http://semanticwebcourse.org/marchi/midterm2#room1
 :room1 rdf:type owl:NamedIndividual ,
                 :Room ;
-       :isLocatedIn :building1 .
+       :isLocatedIn :building1 ,
+                    :building2 .
 
 
 ###  http://semanticwebcourse.org/marchi/midterm2#temporaryexhibition1

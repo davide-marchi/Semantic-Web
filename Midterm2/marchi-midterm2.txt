@@ -1,0 +1,43 @@
+Q09. Identify one assertion that would make the ontology inconsistent
+
+Writing the following assertions will make the ontology inconsistent:
+
+room1 isLocatedIn building1
+room1 isLocatedIn building2
+building1 DifferentFrom building2
+
+This is because one room can only be in exactly one building.
+The isLocatedIn object property is functional, and for this reason assessing that:
+
+room1 isLocatedIn building1
+room1 isLocatedIn building2
+
+imply that building1 and building2 are the same buildings, and thus can not be different.
+
+
+------------------------------------------------
+
+
+Q10. Verify and explain whether or not the created ontology (including the complex role
+inclusion axiom defined in Q08) satisfies the global restrictions on the axioms of an OWL 2
+DL ontology
+
+The created ontology satisfy the 5 global restrictions:
+
+1. Restriction on owl:topDataProperty -> Satisfied
+   Because all the data properties introduced has been defined as subproperties of TopDataProperty,
+   and not a single superproperty of TopDataProperty has been defined
+
+2. Restrictions on datatypes -> Satisfied
+   Because all the datatypes used in the ontology are from OWL 2 datatype map, and no data ranges
+   or other datatypes have been defined
+
+3. Restriction on simple roles -> Satisfied
+   All the object propertites using min, max, functional, transitive... are simple object properties.
+   The complex object property (chat) is not involved in any of them.
+
+4. Restriction on property hierarchy -> Satisfied
+   Because no cycles have been introduces in the hieriarchy, not even by the property chain
+
+5. Restrictions on Anonymous Individuals -> Satisfied
+   No anonymous individuals are present in the ontology
