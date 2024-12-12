@@ -1,0 +1,395 @@
+@prefix : <http://www.semanticweb.org/exam-example#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/exam-example> .
+
+<http://www.semanticweb.org/exam-example> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/exam-example#containsArticle
+:containsArticle rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :isCollectedIn ;
+                 rdfs:domain :OpenAccessRepository ;
+                 rdfs:range :Article ;
+                 rdfs:comment "containsArticle relates a repository to an article contained in it." .
+
+
+###  http://www.semanticweb.org/exam-example#hasAbstract
+:hasAbstract rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasPart ;
+             owl:inverseOf :isAbstractOf ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Article ;
+             rdfs:range :Abstract ;
+             rdfs:comment "hasAbstract is a subproperty of hasPart and relates an article to its abstract." .
+
+
+###  http://www.semanticweb.org/exam-example#hasArticle
+:hasArticle rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasPart ;
+            owl:inverseOf :isArticleOf ;
+            rdfs:domain :JournalVolume ;
+            rdfs:range :JournalArticle ;
+            rdfs:comment "hasArticle is a subproperty of hasPart and relates a journal volume to its journal articles." .
+
+
+###  http://www.semanticweb.org/exam-example#hasExtendedVersion
+:hasExtendedVersion rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isExtendedVersionOf ;
+                    rdf:type owl:FunctionalProperty ,
+                             owl:InverseFunctionalProperty ;
+                    rdfs:domain :ConferenceArticle ;
+                    rdfs:range :JournalArticle ;
+                    rdfs:comment "hasExtendedVersion relates a conference article to the journal article extended by it." .
+
+
+###  http://www.semanticweb.org/exam-example#hasIssue
+:hasIssue rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isIssueOf ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :Journal ;
+          rdfs:range :JournalVolume ;
+          rdfs:comment "hasIssue relates a journal to the journal volumes that are its issues." .
+
+
+###  http://www.semanticweb.org/exam-example#hasPart
+:hasPart rdf:type owl:ObjectProperty ,
+                  owl:TransitiveProperty ,
+                  owl:ReflexiveProperty ;
+         rdfs:comment "hasPart is a superproperty of: hasSection, hasArticle, hasAbstract." .
+
+
+###  http://www.semanticweb.org/exam-example#hasReferences
+:hasReferences rdf:type owl:ObjectProperty ;
+               owl:inverseOf :refersTo ;
+               rdfs:domain :Article ;
+               rdfs:range :References .
+
+
+###  http://www.semanticweb.org/exam-example#hasSection
+:hasSection rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasPart ;
+            owl:inverseOf :isSectionOf ;
+            rdfs:domain :Article ;
+            rdfs:range :Section ;
+            rdfs:comment "hasSection is a subproperty of hasPart and relates an article to its sections." .
+
+
+###  http://www.semanticweb.org/exam-example#isAbstractOf
+:isAbstractOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isPartOf ;
+              rdf:type owl:InverseFunctionalProperty ;
+              rdfs:domain :Abstract ;
+              rdfs:range :Article ;
+              rdfs:comment "isAbstractOf is a subproperty of isPartOf and relates an abstract to its article." .
+
+
+###  http://www.semanticweb.org/exam-example#isArticleOf
+:isArticleOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isPartOf ;
+             rdfs:domain :JournalArticle ;
+             rdfs:range :JournalVolume ;
+             rdfs:comment "isArticleOf is a subproperty of isPartOf and relates an article to its journal volume." .
+
+
+###  http://www.semanticweb.org/exam-example#isCollectedIn
+:isCollectedIn rdf:type owl:ObjectProperty ;
+               rdfs:domain :Article ;
+               rdfs:range :OpenAccessRepository ;
+               owl:propertyChainAxiom ( :isArticleOf
+                                        :isIssueOf
+                                        :isPublishedBy
+                                        :usesRepository
+                                      ) ;
+               rdfs:comment "isCollectedIn relates an article to the open access repository in which it is collected." .
+
+
+###  http://www.semanticweb.org/exam-example#isExtendedVersionOf
+:isExtendedVersionOf rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ,
+                              owl:InverseFunctionalProperty ;
+                     rdfs:domain :JournalArticle ;
+                     rdfs:range :ConferenceArticle ;
+                     rdfs:comment "isExtendedVersionOf relates a journal article to the conference article it extends." .
+
+
+###  http://www.semanticweb.org/exam-example#isIssueOf
+:isIssueOf rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :JournalVolume ;
+           rdfs:range :Journal ;
+           rdfs:comment "isIssueOf relates a journal volume to its journal." .
+
+
+###  http://www.semanticweb.org/exam-example#isPartOf
+:isPartOf rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ,
+                   owl:ReflexiveProperty ;
+          rdfs:comment "hasPart is a superproperty of: isSectionOf, isArticleOf, isAbstractOf." .
+
+
+###  http://www.semanticweb.org/exam-example#isPublishedBy
+:isPublishedBy rdf:type owl:ObjectProperty ;
+               owl:inverseOf :publishes ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :ScientificPublication ;
+               rdfs:range :Publisher ;
+               rdfs:comment "isPublishedBy relates a journal to its publisher." .
+
+
+###  http://www.semanticweb.org/exam-example#isSectionOf
+:isSectionOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isPartOf ;
+             rdfs:domain :Section ;
+             rdfs:range :Article ;
+             rdfs:comment "isSectionOf is a subproperty of isPartOf and relates a section to its article." .
+
+
+###  http://www.semanticweb.org/exam-example#isUsedBy
+:isUsedBy rdf:type owl:ObjectProperty ;
+          owl:inverseOf :usesRepository ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :OpenAccessRepository ;
+          rdfs:range :Publisher ;
+          rdfs:comment "isUsedBy relates a repository to the publisher that uses it." .
+
+
+###  http://www.semanticweb.org/exam-example#publishes
+:publishes rdf:type owl:ObjectProperty ,
+                    owl:InverseFunctionalProperty ;
+           rdfs:domain :Publisher ;
+           rdfs:range :Journal ;
+           rdfs:comment "isPublishedBy relates a publisher to the journals published by it." .
+
+
+###  http://www.semanticweb.org/exam-example#refersTo
+:refersTo rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :References ;
+          rdfs:range :Article .
+
+
+###  http://www.semanticweb.org/exam-example#usesRepository
+:usesRepository rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Publisher ;
+                rdfs:range :OpenAccessRepository ;
+                rdfs:comment "usesRepository relates a publisher to an open access repository used by it." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/exam-example#hasDate
+:hasDate rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain :JournalVolume ;
+         rdfs:range xsd:dateTime ;
+         rdfs:comment "hasDate relates a journal volume and the date of the publication." .
+
+
+###  http://www.semanticweb.org/exam-example#hasNumber
+:hasNumber rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :JournalVolume ;
+           rdfs:range xsd:nonNegativeInteger ;
+           rdfs:comment "hasNumber relates a journal volume and its identified number." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/exam-example#Abstract
+:Abstract rdf:type owl:Class ;
+          rdfs:comment "An abstract is a brief summary of the content of an article. It is part of the article." .
+
+
+###  http://www.semanticweb.org/exam-example#Article
+:Article rdf:type owl:Class ;
+         rdfs:subClassOf :ScientificPublication ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasAbstract ;
+                           owl:allValuesFrom :Abstract
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:allValuesFrom :Section
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:minQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Section
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasAbstract ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Abstract
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Conclusions
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Introduction
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSection ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :References
+                         ] ;
+         rdfs:comment "An article can be a conference article or a journal article." .
+
+
+###  http://www.semanticweb.org/exam-example#Conclusions
+:Conclusions rdf:type owl:Class ;
+             rdfs:subClassOf :Section ;
+             rdfs:comment "The Conclusions are a section of an article." .
+
+
+###  http://www.semanticweb.org/exam-example#ConferenceArticle
+:ConferenceArticle rdf:type owl:Class ;
+                   rdfs:subClassOf :Article ;
+                   owl:disjointWith :JournalArticle ;
+                   rdfs:comment "A conference article is an article published in the context of a conference. It has to have an abstract and at least the following sections: Introduction, Conclusions, References." .
+
+
+###  http://www.semanticweb.org/exam-example#Introduction
+:Introduction rdf:type owl:Class ;
+              rdfs:subClassOf :Section ;
+              rdfs:comment "The Introduction is a section of an article." .
+
+
+###  http://www.semanticweb.org/exam-example#Journal
+:Journal rdf:type owl:Class ;
+         rdfs:subClassOf :ScientificPublication ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :isPublishedBy ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :Publisher
+                         ] ;
+         rdfs:comment "A journal consists of one or more journal volumes." .
+
+
+###  http://www.semanticweb.org/exam-example#JournalArticle
+:JournalArticle rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Article
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :isArticleOf ;
+                                                             owl:someValuesFrom :JournalVolume
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Article ;
+                rdfs:comment "A journal article is an article published in a journal volume. It has to have an abstract and at least the following sections: Introduction, Conclusions, References. A journal article can be the extended version of a conference article." .
+
+
+###  http://www.semanticweb.org/exam-example#JournalVolume
+:JournalVolume rdf:type owl:Class ;
+               rdfs:subClassOf :ScientificPublication ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasArticle ;
+                                 owl:allValuesFrom :JournalArticle
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasArticle ;
+                                 owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :JournalArticle
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isIssueOf ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Journal
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasDate ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTime
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasNumber ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:nonNegativeInteger
+                               ] ;
+               rdfs:comment "A journal volume is an issue of a journal and consists of at least one journal article." ;
+               rdfs:label "Journal Volume"@en .
+
+
+###  http://www.semanticweb.org/exam-example#OpenAccessRepository
+:OpenAccessRepository rdf:type owl:Class ;
+                      rdfs:comment "An open access repository collects articles and provides free access to them." .
+
+
+###  http://www.semanticweb.org/exam-example#Publisher
+:Publisher rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :usesRepository ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :OpenAccessRepository
+                           ] ;
+           rdfs:comment "A publisher is an organization that publishes journals." .
+
+
+###  http://www.semanticweb.org/exam-example#References
+:References rdf:type owl:Class ;
+            rdfs:subClassOf :Section ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :refersTo ;
+                              owl:someValuesFrom :Article
+                            ] ;
+            rdfs:comment "The References are a section of an article." .
+
+
+###  http://www.semanticweb.org/exam-example#ScientificPublication
+:ScientificPublication rdf:type owl:Class ;
+                       rdfs:comment "A scientific publication can be a journal, a journal volume or an article." .
+
+
+###  http://www.semanticweb.org/exam-example#Section
+:Section rdf:type owl:Class ;
+         rdfs:comment "A section is a part of an article. Example of sections can be Introduction, Conclusions and References." .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Abstract
+                :OpenAccessRepository
+                :Publisher
+                :ScientificPublication
+                :Section
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Article
+                :Journal
+                :JournalVolume
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Conclusions
+                :Introduction
+                :References
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
