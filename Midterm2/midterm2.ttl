@@ -305,6 +305,80 @@
 
 
 #################################################################
+#    Individuals
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2#building1
+:building1 rdf:type owl:NamedIndividual ,
+                    :Building ;
+           :managedBy :museum1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#collection1
+:collection1 rdf:type owl:NamedIndividual ,
+                      :Collection .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#curator1
+:curator1 rdf:type owl:NamedIndividual ,
+                   :Curator ;
+          :organize :exhibition1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#exhibition1
+:exhibition1 rdf:type owl:NamedIndividual ,
+                      :Exhibition ;
+             :isDisplayedIn :room1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#exhibition2
+:exhibition2 rdf:type owl:NamedIndividual ,
+                      :Exhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#museum1
+:museum1 rdf:type owl:NamedIndividual ,
+                  :Museum ;
+         :host :exhibition2 ;
+         :hasMuseumID "5"^^xsd:positiveInteger ;
+         :hasName "Museo Leonardo Da Vinci" .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#museumItem1
+:museumItem1 rdf:type owl:NamedIndividual ,
+                      :MuseumItem ;
+             :isContainedIn :room1 ;
+             :hasItemID "3"^^xsd:positiveInteger .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#organization1
+:organization1 rdf:type owl:NamedIndividual ,
+                        :Organization .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#permanentExhibition1
+:permanentExhibition1 rdf:type owl:NamedIndividual ,
+                               :PermanentExhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#person1
+:person1 rdf:type owl:NamedIndividual ,
+                  <http://xmlns.com/foaf/0.1/Person> ;
+         :isEmployedIn :museum1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#room1
+:room1 rdf:type owl:NamedIndividual ,
+                :Room ;
+       :isLocatedIn :building1 .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#temporaryexhibition1
+:temporaryexhibition1 rdf:type owl:NamedIndividual ,
+                               :TermporaryExhibition .
+
+
+#################################################################
 #    General axioms
 #################################################################
 
