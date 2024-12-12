@@ -25,8 +25,8 @@ DL ontology
 The created ontology satisfy the 5 global restrictions:
 
 1. Restriction on owl:topDataProperty -> Satisfied
-   Because all the data properties introduced has been defined as subproperties of TopDataProperty,
-   and not a single superproperty of TopDataProperty has been defined
+   Because all the data properties introduced has been defined as subproperties of owl:TopDataProperty,
+   and not a single superproperty of owl:TopDataProperty has been defined
 
 2. Restrictions on datatypes -> Satisfied
    Because all the datatypes used in the ontology are from OWL 2 datatype map, and no data ranges
@@ -34,10 +34,10 @@ The created ontology satisfy the 5 global restrictions:
 
 3. Restriction on simple roles -> Satisfied
    All the object propertites using min, max, functional, transitive... are simple object properties.
-   The complex object property (chat) is not involved in any of them.
+   The complex object property (chain) is not involved in any of them.
 
 4. Restriction on property hierarchy -> Satisfied
-   Because no cycles have been introduces in the hieriarchy, not even by the property chain
+   Because no cycles have been introduces in the hierarchy, not even by the property chain
 
 5. Restrictions on Anonymous Individuals -> Satisfied
    No anonymous individuals are present in the ontology
