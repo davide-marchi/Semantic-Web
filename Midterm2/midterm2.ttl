@@ -71,7 +71,12 @@
 ###  http://semanticwebcourse.org/marchi/midterm2#isEmployedIn
 :isEmployedIn rdf:type owl:ObjectProperty ;
               rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
-              rdfs:range :Museum .
+              rdfs:range :Museum ;
+              owl:propertyChainAxiom ( :organize
+                                       :isDisplayedIn
+                                       :isLocatedIn
+                                       :managedBy
+                                     ) .
 
 
 ###  http://semanticwebcourse.org/marchi/midterm2#isInside
