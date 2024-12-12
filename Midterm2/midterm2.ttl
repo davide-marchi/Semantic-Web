@@ -8,4 +8,311 @@
 
 <http://semanticwebcourse.org/marchi/midterm2> rdf:type owl:Ontology .
 
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2#contains
+:contains rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isContainedIn ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :Room ;
+          rdfs:range :MuseumItem .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#displayes
+:displayes rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isDisplayedIn ;
+           rdfs:domain :Room ;
+           rdfs:range :Exhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#employes
+:employes rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isEmployedIn ;
+          rdfs:domain :Museum ;
+          rdfs:range <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#hasInside
+:hasInside rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isInside ;
+           rdf:type owl:InverseFunctionalProperty ;
+           rdfs:domain :Collection ;
+           rdfs:range :MuseumItem .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#host
+:host rdf:type owl:ObjectProperty ;
+      owl:inverseOf :hostedBy ;
+      rdfs:domain :Museum ;
+      rdfs:range :Exhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#hostedBy
+:hostedBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :Exhibition ;
+          rdfs:range :Museum .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isContainedIn
+:isContainedIn rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :MuseumItem ;
+               rdfs:range :Room .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isDisplayedIn
+:isDisplayedIn rdf:type owl:ObjectProperty ;
+               rdfs:domain :Exhibition ;
+               rdfs:range :Room .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isEmployedIn
+:isEmployedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
+              rdfs:range :Museum .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isInside
+:isInside rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :MuseumItem ;
+          rdfs:range :Collection .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isLocationOf ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Room ;
+             rdfs:range :Building .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#isLocationOf
+:isLocationOf rdf:type owl:ObjectProperty ,
+                       owl:InverseFunctionalProperty ;
+              rdfs:domain :Building ;
+              rdfs:range :Room .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#manage
+:manage rdf:type owl:ObjectProperty ;
+        owl:inverseOf :managedBy ;
+        rdfs:domain :Organization ;
+        rdfs:range :Building .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#managedBy
+:managedBy rdf:type owl:ObjectProperty ;
+           rdfs:domain :Building ;
+           rdfs:range :Organization .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#mantainedBy
+:mantainedBy rdf:type owl:ObjectProperty ;
+             owl:inverseOf :mantains ;
+             rdfs:domain :Collection ;
+             rdfs:range :Organization .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#mantains
+:mantains rdf:type owl:ObjectProperty ;
+          rdfs:domain :Organization ;
+          rdfs:range :Collection .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#organize
+:organize rdf:type owl:ObjectProperty ;
+          owl:inverseOf :organizedBy ;
+          rdfs:domain <http://xmlns.com/foaf/0.1/Person> ;
+          rdfs:range :Exhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#organizedBy
+:organizedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :Exhibition ;
+             rdfs:range <http://xmlns.com/foaf/0.1/Person> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2#hasID
+:hasID rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:positiveInteger .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#hasItemID
+:hasItemID rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :hasID ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :MuseumItem ;
+           rdfs:range xsd:positiveInteger .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#hasMuseumID
+:hasMuseumID rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :hasID ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Museum ;
+             rdfs:range xsd:positiveInteger .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Museum ;
+         rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://semanticwebcourse.org/marchi/midterm2#Building
+:Building rdf:type owl:Class .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Collection
+:Collection rdf:type owl:Class .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Curator
+:Curator rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( <http://xmlns.com/foaf/0.1/Person>
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :isEmployedIn ;
+                                                      owl:someValuesFrom :Museum
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :organize ;
+                                                      owl:someValuesFrom :Exhibition
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
+         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :isEmployedIn ;
+                           owl:someValuesFrom :Museum
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :organize ;
+                           owl:someValuesFrom :Exhibition
+                         ] .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Exhibition
+:Exhibition rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :isDisplayedIn ;
+                              owl:someValuesFrom :Room
+                            ] ;
+            owl:disjointUnionOf ( :PermanentExhibition
+                                  :TermporaryExhibition
+                                ) .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Museum
+:Museum rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( :Organization
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :manage ;
+                                                     owl:someValuesFrom :Building
+                                                   ]
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :mantains ;
+                                                     owl:someValuesFrom :Collection
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] ;
+        rdfs:subClassOf :Organization ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :employes ;
+                          owl:someValuesFrom :Curator
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :manage ;
+                          owl:someValuesFrom :Building
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :mantains ;
+                          owl:someValuesFrom :Collection
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :host ;
+                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Exhibition
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasMuseumID ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:positiveInteger
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasName ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#MuseumItem
+:MuseumItem rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :isInside ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Collection
+                            ] .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Organization
+:Organization rdf:type owl:Class .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#PermanentExhibition
+:PermanentExhibition rdf:type owl:Class ;
+                     rdfs:subClassOf :Exhibition .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#Room
+:Room rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :contains ;
+                        owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                        owl:onClass :MuseumItem
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isLocatedIn ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onClass :Building
+                      ] .
+
+
+###  http://semanticwebcourse.org/marchi/midterm2#TermporaryExhibition
+:TermporaryExhibition rdf:type owl:Class ;
+                      rdfs:subClassOf :Exhibition .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Building
+                :Collection
+                :Curator
+                :Exhibition
+                :Museum
+                :MuseumItem
+                :Room
+              )
+] .
+
+
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
